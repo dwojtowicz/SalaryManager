@@ -9,14 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class EmployeeServiceImpl implements EmployeeService {
 
    @Autowired
     EmployeeDao employeeDao;
 
     @Override
-    @Transactional
     public List<Employee> getEmployees() {
         return employeeDao.getEmployees();
+    }
+
+    @Override
+    public void saveEmployee(Employee theEmployee) {
+        employeeDao.saveEmployee(theEmployee);
     }
 }

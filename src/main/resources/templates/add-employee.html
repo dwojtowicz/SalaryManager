@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Add Employee</title>
 </head>
 <body>
+
+<form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+    <input type="text" th:field="*{firstName}" />
+    <input type="text" th:field="*{lastName}" />
+    <input type="text" th:field="*{position}" />
+    <input type="number" th:field="*{grossMonth}"/>
+    <input type="submit">
+
+</form>
 
 </body>
 </html>

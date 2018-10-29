@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -37,11 +39,20 @@ public class EmployeeController {
 
     @GetMapping("/addEmployee")
     public String addEmployee(Model theModel){
+
         Employee theEmployee = new Employee();
 
         theModel.addAttribute("employee", theEmployee);
 
         return "add-employee";
+    }
+
+    @PostMapping("/saveEmployee")
+    public String saveEmployee(@ModelAttribute("employee") Employee theEmployee){
+
+        employeeService.saveEmployee(theEmployee);
+
+        return "redirect:/menu";
     }
 
 }

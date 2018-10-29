@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
+</head>
+<body>
+
+<input type="button" value="Add Employee"
+onclick="window.location.href='addEmployee'; return false"
+class="add-button"/>
+
+<table>
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Position</th>
+        <th>Net month</th>
+        <th>Total</th>
+        <th>Detail</th>
+    </tr>
+
+    <tr th:each="employee : ${employees}">
+
+    <tr>
+        <td>${employees.firstName}</td>
+        <td>${employees.lastName}</td>
+        <td>${employees.position}</td>
+        <td>${employees.netMonth}</td>
+        <td>${employees.total}</td>
+
+</tr>
+
+</table>
+
+</body>
+</html>

@@ -9,7 +9,6 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "employee")
-@EntityListeners(AuditingEntityListener.class)
 public class Employee {
 
     @Id

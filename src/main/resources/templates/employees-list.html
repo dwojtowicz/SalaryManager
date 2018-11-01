@@ -16,8 +16,10 @@ class="add-button"/>
         <th>Last name</th>
         <th>Position</th>
         <th>Gross month</th>
+        <th>Tax</th>
+        <th>Net month</th>
         <th>Total</th>
-        <th>Detail</th>
+
     </tr>
 
     <tr th:each="employee : ${employees}">
@@ -25,7 +27,10 @@ class="add-button"/>
         <td th:text="${employee.lastName}"></td>
         <td th:text="${employee.position}"></td>
         <td th:text="${employee.grossMonth}"></td>
+        <td th:text="${employee.tax}"></td>
+        <td th:text="${employee.netMonth}"></td>
         <td th:text="${employee.salaryTotal}"></td>
+
 
 </tr>
 

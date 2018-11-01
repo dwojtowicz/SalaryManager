@@ -37,14 +37,12 @@ public class Employee {
     @Column(name = "tax")
     private int tax;
 
-    @Column(name = "work_hours")
-    private int workHours;
 
     public Employee(){
 
     }
 
-    public Employee(String firstName, String lastName, String position, float grossMonth, float netMonth, float salaryTotal, int tax, int workHours) {
+    public Employee(String firstName, String lastName, String position, float grossMonth, float netMonth, float salaryTotal, int tax) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
@@ -52,7 +50,6 @@ public class Employee {
         this.netMonth = netMonth;
         this.salaryTotal = salaryTotal;
         this.tax = tax;
-        this.workHours = workHours;
     }
 
     public int getId() {
@@ -119,13 +116,7 @@ public class Employee {
         this.tax = tax;
     }
 
-    public int getWorkHours() {
-        return workHours;
-    }
 
-    public void setWorkHours(int workHours) {
-        this.workHours = workHours;
-    }
 
     @Override
     public String toString() {
@@ -138,7 +129,6 @@ public class Employee {
                 ", netMonth=" + netMonth +
                 ", salaryTotal=" + salaryTotal +
                 ", tax=" + tax +
-                ", workHours=" + workHours +
                 '}';
     }
 }

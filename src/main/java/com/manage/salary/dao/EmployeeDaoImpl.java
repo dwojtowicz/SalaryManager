@@ -19,7 +19,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
     @Override
     public List<Employee> getEmployees() {
 
-        String hql = "FROM Employee";
+        String hql = "FROM Employee ORDER BY firstName";
 
         Query query = entityManager.createQuery(hql);
 
@@ -30,4 +30,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
     public void saveEmployee(Employee theEmployee) {
         entityManager.persist(theEmployee);
     }
+
+
+
+
+
 }

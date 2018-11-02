@@ -1,6 +1,6 @@
-package com.manage.salary.service;
+package com.manage.salary.employee;
 
-import com.manage.salary.entity.Employee;
+import com.manage.salary.employee.Employee;
 
 import java.util.List;
 

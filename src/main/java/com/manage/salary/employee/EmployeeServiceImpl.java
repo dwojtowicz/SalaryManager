@@ -1,7 +1,5 @@
-package com.manage.salary.service;
+package com.manage.salary.employee;
 
-import com.manage.salary.dao.EmployeeDao;
-import com.manage.salary.entity.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,20 +7,22 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+
 public class EmployeeServiceImpl implements EmployeeService {
 
    @Autowired
-    EmployeeDao employeeDao;
+   EmployeeRepository employeeRepository;
 
     @Override
+    @Transactional
     public List<Employee> getEmployees() {
-        return employeeDao.getEmployees();
+        return employeeRepository.findAll();
     }
 
     @Override
+    @Transactional
     public void saveEmployee(Employee theEmployee) {
-        employeeDao.saveEmployee(theEmployee);
+        employeeRepository.save(theEmployee);
     }
 
 

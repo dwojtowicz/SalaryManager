@@ -19,27 +19,32 @@ public class SalaryController {
     private EmployeeService employeeService;
 
     @Autowired
-    public SalaryController(SalaryService salaryService) {
+    public SalaryController(SalaryService salaryService, EmployeeService employeeService) {
         this.salaryService = salaryService;
-    }
-
-    @Autowired
-    public SalaryController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-    @GetMapping(name = "/{employeeId}")
-    public String salary(@RequestParam Long employeeId,  Model theModel){
+    @RequestMapping("/employeeId")
+    public String SalaryList(Model theModel){
+
+        theModel.addAttribute("salaries", salaryService.getSalaries());
+
+        return "salary-list";
+    }
+
+
+    @GetMapping("/employeeId/{employeeId}")
+    public String employeeIdSalary(@RequestParam Long employeeId, Model theModel){
 
         Employee employee = employeeService.getEmployeeById(employeeId);
         List<Salary> salaries = employee.getSalary();
         theModel.addAttribute("salaries", salaries);
 
 
-        return "salary-page";
+        return "salary-list";
     }
 
-    @GetMapping(name = "/addSalary")
+    @GetMapping("/addSalary")
     public String addSalary(Model theModel){
 
         Salary salary = new Salary();
@@ -49,12 +54,18 @@ public class SalaryController {
         return "add-salary";
     }
 
-    @PostMapping(name = "/saveSalary")
-    public String saveSalary(@ModelAttribute Salary newSalary, @RequestParam Long employeeId, Model theModel){
+    @PostMapping("/saveSalary")
+    public String saveSalary(@ModelAttribute Salary theSalary, @RequestParam Long employeeId){
+
+        int tax = 10;
+        theSalary.setTax(tax);
+        Double taxedMoney = theSalary.getGrossMonth()/theSalary.getTax();
+        theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
+
 
         Employee employee = employeeService.getEmployeeById(employeeId);
-        newSalary.setEmployee(employee);
-        employeeService.saveEmployee(employee);
-        return "salary-list";
+        theSalary.setEmployee(employee);
+        salaryService.save(theSalary);
+        return "redirect:/salary/employeeId/{employeeId}";
     }
 }

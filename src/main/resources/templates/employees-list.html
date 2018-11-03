@@ -27,7 +27,7 @@ class="add-button"/>
         <td th:text="${employee.lastName}"></td>
         <td th:text="${employee.position}"></td>
         <td> <a th:href="@{/employees/detail(id=${employee.id})}" /> Detail </td>
-        <td> <a th:href="@{/employees/salary(id=${employee.id})}" /> Salary </td>
+        <td> <a th:href="@{/salary/employeeId(id=${employee.id})}" /> Salary </td>
 
 </tr>
 

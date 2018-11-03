@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+<form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="post">
     First Name: <input type="text" th:field="*{firstName}" />
         <br><br>
     Last Name: <input type="text" th:field="*{lastName}" />
@@ -19,12 +19,11 @@
         <option th:value="Senior_Developer" th:text="Senior_Developer"></option>
 
 </select>
-        <br><br>
-        Salary: <input type="number" th:field="*{salary.grossMonth}">
+
     <br><br>
     <input type="submit">
     <br><br>
-    <a href="employees">Back to List</a>
+    <a href="/employee/">Back to List</a>
 </form>
 
 </body>

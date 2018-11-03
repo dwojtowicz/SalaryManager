@@ -17,16 +17,17 @@ public class Salary {
     private Long id;
 
     @Column(name = "gross_month", nullable = false)
-    private Float grossMonth;
+    private Double grossMonth;
 
     @Column(name = "net_month", nullable = false)
-    private Float netMonth;
+    private Double netMonth;
 
     @Column(name = "tax", nullable = false)
     private Integer tax;
 
     @ManyToOne(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL)
+            cascade = {CascadeType.DETACH, CascadeType.MERGE,
+                    CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "employee_id")
     private Employee employee;
 

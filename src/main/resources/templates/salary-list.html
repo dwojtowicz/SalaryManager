@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<input type="button" value="Add Employee"
+<input type="button" value="Add Salary"
        onclick="window.location.href='addSalary'; return false"
        class="add-button"/>
 
@@ -18,7 +18,7 @@
         <th>Net</th>
     </tr>
 
-    <tr th:each="salary: : ${salaries}">
+    <tr th:each="salary : ${salaries}">
         <td th:text="${salary.grossMonth}"></td>
         <td th:text="${salary.tax}"></td>
         <td th:text="${salary.netMonth}"></td>

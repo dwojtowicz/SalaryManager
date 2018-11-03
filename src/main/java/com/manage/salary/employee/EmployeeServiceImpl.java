@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public Employee getEmployeeById(Long theId){
-       return employeeRepository.getOne(theId);
+       return employeeRepository.findById(theId).get();
     }
 
 

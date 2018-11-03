@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Salary</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/saveSalary}" th:object="${salary}" method="post">
+    Salary gross month: <input type="number" th:field="*{salaryMonth}" />
+
+    <br><br>
+    <input type="submit">
+    <br><br>
+    <a href="employees">Back to List</a>
+</form>
+
+</body>
+</html>

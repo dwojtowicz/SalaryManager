@@ -5,13 +5,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-
 public class EmployeeServiceImpl implements EmployeeService {
 
-   @Autowired
-   EmployeeRepository employeeRepository;
+
+  private EmployeeRepository employeeRepository;
+
+    @Autowired
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
 
     @Override
     @Transactional
@@ -23,6 +28,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Transactional
     public void saveEmployee(Employee theEmployee) {
         employeeRepository.save(theEmployee);
+    }
+
+    @Override
+    @Transactional
+    public Employee getEmployeeById(Long theId){
+       return employeeRepository.getOne(theId);
     }
 
 

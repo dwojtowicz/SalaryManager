@@ -7,12 +7,24 @@
 <body>
 
 <form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
-    <input type="text" th:field="*{firstName}" />
-    <input type="text" th:field="*{lastName}" />
-    <input type="text" th:field="*{position}" />
-    <input type="number" th:field="*{grossMonth}"/>
-    <input type="submit">
+    First Name: <input type="text" th:field="*{firstName}" />
+        <br><br>
+    Last Name: <input type="text" th:field="*{lastName}" />
+        <br><br>
+    Position:    <select th:field="*{position}">
+        <option th:value="Manager" th:text="Manager"></option>
+        <option th:value="Engineer" th:text="Engineer"></option>
+        <option th:value="Junior_Developer" th:text="Junior_Developer"></option>
+        <option th:value="Mid_Developer" th:text="Mid_Developer"></option>
+        <option th:value="Senior_Developer" th:text="Senior_Developer"></option>
 
+</select>
+        <br><br>
+        Salary: <input type="number" th:field="*{salary.grossMonth}">
+    <br><br>
+    <input type="submit">
+    <br><br>
+    <a href="employees">Back to List</a>
 </form>
 
 </body>

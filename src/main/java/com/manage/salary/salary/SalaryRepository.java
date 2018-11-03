@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SalaryRepository extends CrudRepository<Salary, Long > {
+public interface SalaryRepository extends JpaRepository<Salary, Long > {
 
 
 }

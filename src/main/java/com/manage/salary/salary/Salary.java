@@ -30,44 +30,6 @@ public class Salary {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Float getGrossMonth() {
-        return grossMonth;
-    }
-
-    public void setGrossMonth(Float grossMonth) {
-        this.grossMonth = grossMonth;
-    }
-
-    public Float getNetMonth() {
-        return netMonth;
-    }
-
-    public void setNetMonth(Float netMonth) {
-        this.netMonth = netMonth;
-    }
-
-    public Integer getTax() {
-        return tax;
-    }
-
-    public void setTax(Integer tax) {
-        this.tax = tax;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 }
 

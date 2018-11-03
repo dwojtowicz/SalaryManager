@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/salary")
 public class SalaryController {
@@ -27,9 +29,12 @@ public class SalaryController {
     }
 
     @GetMapping(name = "/{employeeId}")
-    public String salary(@PathVariable(value = "employeeId") Long employeeId,  Model theModel){
+    public String salary(@RequestParam Long employeeId,  Model theModel){
 
-        //theModel.addAttribute("salary", );
+        Employee employee = employeeService.getEmployeeById(employeeId);
+        List<Salary> salaries = employee.getSalary();
+        theModel.addAttribute("salaries", salaries);
+
 
         return "salary-page";
     }

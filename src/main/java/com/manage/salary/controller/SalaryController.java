@@ -4,16 +4,23 @@ import com.manage.salary.employee.Employee;
 import com.manage.salary.employee.EmployeeService;
 import com.manage.salary.salary.Salary;
 import com.manage.salary.salary.SalaryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 @Controller
 @RequestMapping("/salary")
 public class SalaryController {
+
+
 
     private SalaryService salaryService;
     private EmployeeService employeeService;
@@ -24,22 +31,14 @@ public class SalaryController {
         this.employeeService = employeeService;
     }
 
-    @RequestMapping("/employeeId")
-    public String SalaryList(Model theModel){
-
-        theModel.addAttribute("salaries", salaryService.getSalaries());
-
-        return "salary-list";
-    }
-
 
     @GetMapping("/employeeId/{employeeId}")
-    public String employeeIdSalary(@RequestParam Long employeeId, Model theModel){
+    public String employeeIdSalary(@PathVariable("employeeId") Long employeeId, Model theModel){
+
 
         Employee employee = employeeService.getEmployeeById(employeeId);
         List<Salary> salaries = employee.getSalary();
         theModel.addAttribute("salaries", salaries);
-
 
         return "salary-list";
     }
@@ -47,25 +46,28 @@ public class SalaryController {
     @GetMapping("/addSalary")
     public String addSalary(Model theModel){
 
-        Salary salary = new Salary();
-
-        theModel.addAttribute("salary", salary);
-        theModel.addAttribute("employee", employeeService.getEmployees());
+        theModel.addAttribute(new Salary());
+        theModel.addAttribute("employees", employeeService.getEmployees());
         return "add-salary";
     }
 
     @PostMapping("/saveSalary")
-    public String saveSalary(@ModelAttribute Salary theSalary, @RequestParam Long employeeId){
+    public String saveSalary(@ModelAttribute Salary theSalary,
+                             @RequestParam Long employeeId){
+        int tax;
+        Employee employee = employeeService.getEmployeeById(employeeId);
+        theSalary.setEmployee(employee);
 
-        int tax = 10;
+        if (employee.getPosition().toLowerCase().equals("manager")){
+            tax = 12;
+        } else tax = 10;
         theSalary.setTax(tax);
         Double taxedMoney = theSalary.getGrossMonth()/theSalary.getTax();
         theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
 
 
-        Employee employee = employeeService.getEmployeeById(employeeId);
-        theSalary.setEmployee(employee);
         salaryService.save(theSalary);
-        return "redirect:/salary/employeeId/{employeeId}";
+
+        return "redirect:/employee/";
     }
 }

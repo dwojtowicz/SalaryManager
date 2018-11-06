@@ -28,7 +28,6 @@ public class Salary {
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH, CascadeType.MERGE,
                     CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "employee_id")
     private Employee employee;
 
 

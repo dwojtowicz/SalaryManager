@@ -8,4 +8,6 @@ public interface SalaryService {
     void save(Salary theSalary);
 
     List<Salary> getSalaries();
+
+
 }

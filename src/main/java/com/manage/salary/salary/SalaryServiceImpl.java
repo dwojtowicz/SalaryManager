@@ -22,6 +22,8 @@ public class SalaryServiceImpl implements SalaryService {
         return salaryRepository.findAll();
     }
 
+
+
     @Override
     @Transactional
     public void save(Salary theSalary) {

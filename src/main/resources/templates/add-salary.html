@@ -8,9 +8,15 @@
 
 <form action="#" th:action="@{/salary/saveSalary}" th:object="${salary}" method="post">
     Salary gross month: <input type="number" th:field="*{grossMonth}" />
-
     <br><br>
+    Employee: <select name="employeeId">
+        <option th:each="employee : ${employees}"
+                th:text = "${employee.firstName} + ' ' + ${employee.lastName}"
+                th:value = "${employee.id}"></option>
+    </select>
+
     <input type="submit">
+
 
 
 </form>

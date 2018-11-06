@@ -29,11 +29,10 @@ public class Employee {
     private String position;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "employee_detail_id")
     private EmployeeDetail employeeDetail;
 
-    @OneToMany(mappedBy = "employee",
-    cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_id")
     private List<Salary> salary;
 
 

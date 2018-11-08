@@ -1,6 +1,7 @@
 package com.manage.salary.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     @Transactional
     public List<Employee> getEmployees() {
-        return employeeRepository.findAll();
+        return employeeRepository.findAll(orderByLastName());
     }
 
     @Override
@@ -36,5 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
        return employeeRepository.findById(theId).get();
     }
 
-
+    private Sort orderByLastName(){
+        return new Sort(Sort.Direction.ASC, "lastName");
+    }
 }

@@ -12,18 +12,20 @@
     Last Name: <input type="text" th:field="*{lastName}" />
         <br><br>
     Position:    <select th:field="*{position}">
-        <option th:value="Manager" th:text="Manager"></option>
+        <option th:value="Junior + ' ' + Developer" th:text="Junior + ' ' + Developer"></option>
+        <option th:value="Mid + ' ' + Developer" th:text="Mid + ' ' + Developer"></option>
+        <option th:value="Senior + ' ' + Developer" th:text="Senior + ' ' + Developer"></option>
         <option th:value="Engineer" th:text="Engineer"></option>
-        <option th:value="Junior_Developer" th:text="Junior_Developer"></option>
-        <option th:value="Mid_Developer" th:text="Mid_Developer"></option>
-        <option th:value="Senior_Developer" th:text="Senior_Developer"></option>
+        <option th:value="Manager" th:text="Manager"></option>
+
+
 
 </select>
 
     <br><br>
     <input type="submit">
     <br><br>
-    <a href="/employee/">Back to List</a>
+    <a href="/employees/">Back to List</a>
 </form>
 
 </body>

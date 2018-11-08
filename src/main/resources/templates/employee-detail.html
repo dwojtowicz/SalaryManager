@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>City</th>
+        <th>Street</th>
+
+    </tr>
+
+    <tr>
+
+    <tr th:each="employeeDetail : ${employeeDetails}">
+
+        <td th:text="${employeeDetail.city}"></td>
+        <td th:text="${employeeDetail.street}"></td>
+    </tr>
+
+</table>
+</body>
+</html>

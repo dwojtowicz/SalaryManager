@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add detail</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/detail/saveDetail}" th:object="${employeeDetail}" method="post">
+    City: <input type="text" th:field="*{city}" />
+    Street: <input type="text" th:field="*{street}" />
+    <br><br>
+    Employee: <select name="employeeId">
+    <option th:each="employee : ${employees}"
+            th:text = "${employee.firstName} + ' ' + ${employee.lastName}"
+            th:value = "${employee.id}"></option>
+</select>
+
+    <input type="submit">
+    <br><br>
+    <a href="/employee/">Back to List</a>
+</form>
+
+
+
+</body>
+</html>

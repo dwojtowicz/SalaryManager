@@ -28,7 +28,9 @@ public class Employee {
     @Column(name = "position")
     private String position;
 
+
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "employee_detail_id")
     private EmployeeDetail employeeDetail;
 
     @OneToMany(cascade = CascadeType.ALL)

@@ -21,9 +21,9 @@ public class EmployeeDetail {
     private String city;
 
     @Column(name = "street")
-    String street;
+    private String street;
 
-    @OneToOne(mappedBy = "employeeDetail",
-    cascade = CascadeType.ALL)
-    private Employee employee;
+    @OneToOne(mappedBy = "employeeDetail")
+    Employee employee;
+
 }

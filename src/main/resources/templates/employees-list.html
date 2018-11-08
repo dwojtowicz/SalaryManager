@@ -10,6 +10,10 @@
 onclick="window.location.href='addEmployee'; return false"
 class="add-button"/>
 
+<input type="button" value="Add Detail"
+       onclick="window.location.href='/detail/addDetail'; return false"
+       class="add-button"/>
+
 <input type="button" value="Add Salary"
        onclick="window.location.href='/salary/addSalary'; return false"
        class="add-button"/>
@@ -30,7 +34,7 @@ class="add-button"/>
         <td th:text="${employee.firstName}"> </td>
         <td th:text="${employee.lastName}"></td>
         <td th:text="${employee.position}"></td>
-        <td> <a th:href="@{/employees/detail(id=${employee.id})}" /> Detail </td>
+        <td> <a th:href="@{/detail/{id}(id=${employee.id})}" /> Detail </td>
         <td> <a th:href="@{/salary/employeeId/{id}(id=${employee.id})}" /> Salary </td>
 
 

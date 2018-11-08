@@ -1,4 +1,6 @@
 package com.manage.salary.employee.detail;
 
-public class EmployeeDetailService {
+public interface EmployeeDetailService {
+
+    void save(EmployeeDetail employeeDetail);
 }

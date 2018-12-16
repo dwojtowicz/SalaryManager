@@ -6,21 +6,13 @@
 </head>
 <body>
 
-<input type="button" value="Add Employee"
-onclick="window.location.href='addEmployee'; return false"
-class="add-button"/>
-
-<input type="button" value="Add Detail"
-       onclick="window.location.href='/detail/addDetail'; return false"
-       class="add-button"/>
 
 
+<a th:href="@{/employee/addEmployee}"> <button> Add Employee </button> </a>
 
-<input type="button" value="Delete Employee"
-        onclick="window.location.href='/employee/deleteEmployeeForm'; return false"
-        class="delete-button">
+<a th:href="@{/detail/addDetail}"> <button> Add Detail </button> </a>
 
-
+<a th:href="@{/employee/deleteEmployeeForm}"> <button> Delete Employee </button> </a>
 
 <table>
     <tr>

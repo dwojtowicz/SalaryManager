@@ -6,10 +6,8 @@
 </head>
 <body>
 
-<input type="button" value="Add Salary"
-       onclick="window.location.href='/salary/addSalary'; return false"
-       class="add-button"/>
 
+<a th:href="@{/salary/addSalary/{id}(id=${employeeId})}"> <button>Add Salary</button> </a>
 
 <table>
     <tr>

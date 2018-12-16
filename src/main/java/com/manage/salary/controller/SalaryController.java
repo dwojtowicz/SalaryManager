@@ -45,7 +45,7 @@ public class SalaryController {
         return "salary-list";
     }
 
-    @GetMapping("/addSalary/{employeeId]")
+    @GetMapping("/addSalary/{employeeId}")
     public String addSalary(@PathVariable("employeeId") Long employeeId, Model theModel){
 
 
@@ -55,13 +55,10 @@ public class SalaryController {
         return "add-salary";
     }
 
-    @PostMapping("/saveSalary")
-    public String saveSalary(@Valid @ModelAttribute Salary theSalary, BindingResult theBindingResult,
-                             @PathVariable Long employeeId){
+    @PostMapping("/saveSalary/{employeeId}")
+    public String saveSalary(@ModelAttribute Salary theSalary, @PathVariable("employeeId") Long employeeId){
 
-        if(theBindingResult.hasErrors()){
-            return "redirect:/salary/addSalary";
-        } else {
+
 
             int tax;
             Employee employee = employeeService.getEmployeeById(employeeId);
@@ -78,4 +75,4 @@ public class SalaryController {
         }
 
     }
-}
+

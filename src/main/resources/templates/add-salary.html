@@ -6,8 +6,8 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/salary/saveSalary}" th:object="${salary}" method="post">
-    <input type="hidden" th:field="*{id}" />
+<form action="#" th:action="@{/salary/saveSalary/{id}(id=${employeeId})}" th:object="${salary}" method="post">
+
     <table>
         <tr>
             <td>   Salary gross month: <input type="number" th:field="*{grossMonth}" /></td>

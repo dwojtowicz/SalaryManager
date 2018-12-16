@@ -7,6 +7,8 @@
 <body>
 
 <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
     First Name: <input type="text" th:field="*{firstName}" />
         <br><br>
     Last Name: <input type="text" th:field="*{lastName}" />
@@ -25,7 +27,7 @@
     <br><br>
     <input type="submit">
     <br><br>
-    <a href="/employees/">Back to List</a>
+    <a href="/employee/">Back to List</a>
 </form>
 
 </body>

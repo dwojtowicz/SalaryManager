@@ -5,6 +5,7 @@ import com.manage.salary.employee.Employee;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "employee_detail")
@@ -17,13 +18,16 @@ public class EmployeeDetail {
     @Column(name = "id")
     private Long id;
 
+    @NotNull
     @Column(name = "city")
     private String city;
 
+    @NotNull
     @Column(name = "street")
     private String street;
 
-    @OneToOne(mappedBy = "employeeDetail")
+    @OneToOne(mappedBy = "employeeDetail",
+    fetch = FetchType.LAZY)
     Employee employee;
 
 }

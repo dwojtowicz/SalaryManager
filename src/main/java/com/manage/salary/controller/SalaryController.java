@@ -9,9 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
@@ -43,31 +45,37 @@ public class SalaryController {
         return "salary-list";
     }
 
-    @GetMapping("/addSalary")
-    public String addSalary(Model theModel){
+    @GetMapping("/addSalary/{employeeId]")
+    public String addSalary(@PathVariable("employeeId") Long employeeId, Model theModel){
+
+
 
         theModel.addAttribute(new Salary());
-        theModel.addAttribute("employees", employeeService.getEmployees());
+        theModel.addAttribute("employees", employeeService.getEmployeeById(employeeId));
         return "add-salary";
     }
 
     @PostMapping("/saveSalary")
-    public String saveSalary(@ModelAttribute Salary theSalary,
-                             @RequestParam Long employeeId){
-        int tax;
-        Employee employee = employeeService.getEmployeeById(employeeId);
-        theSalary.setEmployee(employee);
+    public String saveSalary(@Valid @ModelAttribute Salary theSalary, BindingResult theBindingResult,
+                             @PathVariable Long employeeId){
 
-        if (employee.getPosition().toLowerCase().equals("manager")){
-            tax = 12;
-        } else tax = 10;
-        theSalary.setTax(tax);
-        Double taxedMoney = theSalary.getGrossMonth()/theSalary.getTax();
-        theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
+        if(theBindingResult.hasErrors()){
+            return "redirect:/salary/addSalary";
+        } else {
 
+            int tax;
+            Employee employee = employeeService.getEmployeeById(employeeId);
+            theSalary.setEmployee(employee);
 
-        salaryService.save(theSalary);
+            if (employee.getPosition().toLowerCase().equals("manager")) {
+                tax = 12;
+            } else tax = 10;
+            theSalary.setTax(tax);
+            Double taxedMoney = theSalary.getGrossMonth() / theSalary.getTax();
+            theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
+            salaryService.save(theSalary);
+            return "redirect:/employee/";
+        }
 
-        return "redirect:/employee/";
     }
 }

@@ -7,8 +7,22 @@
 <body>
 
 <form action="#" th:action="@{/detail/saveDetail}" th:object="${employeeDetail}" method="post">
-    City: <input type="text" th:field="*{city}" />
-    Street: <input type="text" th:field="*{street}" />
+
+
+
+
+    <table>
+        <tr>
+            <td>City: <input type="text" th:field="*{city}" /></td>
+            <td th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City Required</td>
+        </tr>
+
+        <tr>
+            <td>Street: <input type="text" th:field="*{street}" /></td>
+            <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Street Required</td>
+        </tr>
+    </table>
+
     <br><br>
     Employee: <select name="employeeId">
     <option th:each="employee : ${employees}"

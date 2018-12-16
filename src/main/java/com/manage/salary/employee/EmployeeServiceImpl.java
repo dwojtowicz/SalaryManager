@@ -37,6 +37,12 @@ public class EmployeeServiceImpl implements EmployeeService {
        return employeeRepository.findById(theId).get();
     }
 
+    @Override
+    @Transactional
+    public void deleteEmployee(Long employeeId) {
+        employeeRepository.deleteById(employeeId);
+    }
+
     private Sort orderByLastName(){
         return new Sort(Sort.Direction.ASC, "lastName");
     }

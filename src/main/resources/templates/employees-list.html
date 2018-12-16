@@ -14,9 +14,13 @@ class="add-button"/>
        onclick="window.location.href='/detail/addDetail'; return false"
        class="add-button"/>
 
-<input type="button" value="Add Salary"
-       onclick="window.location.href='/salary/addSalary'; return false"
-       class="add-button"/>
+
+
+<input type="button" value="Delete Employee"
+        onclick="window.location.href='/employee/deleteEmployeeForm'; return false"
+        class="delete-button">
+
+
 
 <table>
     <tr>
@@ -36,6 +40,7 @@ class="add-button"/>
         <td th:text="${employee.position}"></td>
         <td> <a th:href="@{/detail/{id}(id=${employee.id})}" /> Detail </td>
         <td> <a th:href="@{/salary/employeeId/{id}(id=${employee.id})}" /> Salary </td>
+        <td> <a th:href="@{/employee/updateEmployee/{id}(id=${employee.id})}" /> Update </td>
 
 
 

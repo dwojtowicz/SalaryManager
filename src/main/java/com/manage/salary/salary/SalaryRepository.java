@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface SalaryRepository extends JpaRepository<Salary, Long > {
 
 
+
 }

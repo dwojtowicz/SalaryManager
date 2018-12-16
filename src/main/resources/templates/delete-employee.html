@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Employee</title>
+</head>
+<body>
+<form action="#" th:action="@{/employee/deleteEmployee}" th:object="${employee}" method="post">
+
+Employee: <select name="employeeId">
+    <option th:each="employee : ${employees}"
+            th:text = "${employee.firstName} + ' ' + ${employee.lastName}"
+            th:value = "${employee.id}"></option>
+</select>
+
+<input type="submit" name="Delete">
+<br><br>
+<a href="/employee/">Back to List</a>
+</form>
+
+
+
+</body>
+</html>

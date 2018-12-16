@@ -4,6 +4,7 @@ package com.manage.salary.controller;
 import com.manage.salary.employee.Employee;
 import com.manage.salary.employee.EmployeeService;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,6 +56,33 @@ public class EmployeeController {
 
 
         return "redirect:/employee/";
+    }
+
+    @GetMapping("/deleteEmployeeForm")
+    public String deleteEmployeeForm(Model theModel){
+
+        theModel.addAttribute("employees", employeeService.getEmployees());
+
+        return "delete-employee";
+    }
+
+
+    @PostMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("employeeId") Long employeeId){
+
+        employeeService.deleteEmployee(employeeId);
+
+        return "redirect:/employee/";
+    }
+
+    @GetMapping("/updateEmployee/{employeeId}")
+    public String updateEmployee(@PathVariable("employeeId") Long employeeId, Model theModel){
+
+        Employee employee = employeeService.getEmployeeById(employeeId);
+        theModel.addAttribute("employee", employee);
+
+
+        return "add-employee";
     }
 
 

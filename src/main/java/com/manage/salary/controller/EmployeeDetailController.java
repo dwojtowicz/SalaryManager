@@ -9,9 +9,11 @@ import com.manage.salary.salary.Salary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.jws.WebParam;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -53,14 +55,18 @@ public class EmployeeDetailController {
     }
 
     @PostMapping("/saveDetail")
-    public String saveDetail(@ModelAttribute EmployeeDetail employeeDetail,
+    public String saveDetail(@Valid @ModelAttribute EmployeeDetail employeeDetail, BindingResult theBindingResult,
                                 @RequestParam Long employeeId){
 
-        Employee employee = employeeService.getEmployeeById(employeeId);
-        employee.setEmployeeDetail(employeeDetail);
-        employeeDetailService.save(employeeDetail);
+        if (theBindingResult.hasErrors()){
+            return "redirect:/detail/addDetail";
+        }   else {
+            Employee employee = employeeService.getEmployeeById(employeeId);
+            employee.setEmployeeDetail(employeeDetail);
+            employeeDetailService.save(employeeDetail);
 
-        return "redirect:/employee/";
+            return "redirect:/employee/";
+        }
     }
 
 }

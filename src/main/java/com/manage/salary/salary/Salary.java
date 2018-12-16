@@ -5,6 +5,7 @@ import com.manage.salary.employee.Employee;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "salary")
@@ -16,6 +17,7 @@ public class Salary {
     @Column(name = "id")
     private Long id;
 
+    @NotNull(message = "Salary required")
     @Column(name = "gross_month", nullable = false)
     private Double grossMonth;
 

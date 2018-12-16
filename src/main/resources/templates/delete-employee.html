@@ -7,6 +7,8 @@
 <body>
 <form action="#" th:action="@{/employee/deleteEmployee}" th:object="${employee}" method="post">
 
+
+
 Employee: <select name="employeeId">
     <option th:each="employee : ${employees}"
             th:text = "${employee.firstName} + ' ' + ${employee.lastName}"

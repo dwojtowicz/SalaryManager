@@ -20,6 +20,11 @@ public class EmployeeDetailServiceImpl implements EmployeeDetailService{
         employeeDetailRepository.save(employeeDetail);
     }
 
+    @Override
+    @Transactional
+    public EmployeeDetail getEmployeeDetailById(Long employeeDetailId) {
+        return employeeDetailRepository.findById(employeeDetailId).get();
+    }
 
 
 }

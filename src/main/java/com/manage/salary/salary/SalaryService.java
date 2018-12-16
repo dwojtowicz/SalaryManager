@@ -1,6 +1,8 @@
 package com.manage.salary.salary;
 
 
+import com.manage.salary.employee.Employee;
+
 import java.util.List;
 
 public interface SalaryService {
@@ -9,5 +11,5 @@ public interface SalaryService {
 
     List<Salary> getSalaries();
 
-
+    Salary calculateNet(Salary theSalary, Employee theEmployee);
 }

@@ -56,23 +56,15 @@ public class SalaryController {
     }
 
     @PostMapping("/saveSalary/{employeeId}")
-    public String saveSalary(@ModelAttribute Salary theSalary, @PathVariable("employeeId") Long employeeId){
+    public String saveSalary(@ModelAttribute Salary salary, @PathVariable("employeeId") Long employeeId){
 
 
-
-            int tax;
-            Employee employee = employeeService.getEmployeeById(employeeId);
-            theSalary.setEmployee(employee);
-
-            if (employee.getPosition().toLowerCase().equals("manager")) {
-                tax = 12;
-            } else tax = 10;
-            theSalary.setTax(tax);
-            Double taxedMoney = theSalary.getGrossMonth() / theSalary.getTax();
-            theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
-            salaryService.save(theSalary);
+        Employee employee = employeeService.getEmployeeById(employeeId);
+            salaryService.calculateNet(salary, employee);
+                salaryService.save(salary);
             return "redirect:/employee/";
         }
+
 
     }
 

@@ -7,6 +7,7 @@ import com.manage.salary.employee.detail.EmployeeDetail;
 import com.manage.salary.employee.detail.EmployeeDetailService;
 import com.manage.salary.salary.Salary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.AbstractAuditable_;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,21 +43,32 @@ public class EmployeeDetailController {
         return "employee-detail";
     }
 
-    @GetMapping("/addDetail")
-    public String addDetail(Model theModel){
+    @GetMapping("/addDetail/{employeeId}")
+    public String addDetail(@PathVariable("employeeId") Long employeeId, Model theModel){
 
         EmployeeDetail employeeDetail = new EmployeeDetail();
 
         theModel.addAttribute(employeeDetail);
 
-        theModel.addAttribute("employees", employeeService.getEmployees());
+        theModel.addAttribute("employees", employeeService.getEmployeeById(employeeId));
 
         return "add-detail";
     }
 
-    @PostMapping("/saveDetail")
+    @GetMapping("/updateDetail/{employeeDetailId}")
+    public String updateEmployeeDetail(@PathVariable("employeeDetailId") Long employeeDetailId, Model theModel){
+
+        EmployeeDetail employeeDetail = employeeDetailService.getEmployeeDetailById(employeeDetailId);
+        theModel.addAttribute("employeeDetail", employeeDetail);
+
+
+
+        return "add-detail";
+    }
+
+    @PostMapping("/saveDetail/{employeeId}")
     public String saveDetail(@Valid @ModelAttribute EmployeeDetail employeeDetail, BindingResult theBindingResult,
-                                @RequestParam Long employeeId){
+                                @PathVariable("employeeId") Long employeeId){
 
         if (theBindingResult.hasErrors()){
             return "redirect:/detail/addDetail";

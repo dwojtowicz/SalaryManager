@@ -1,5 +1,6 @@
 package com.manage.salary.salary;
 
+import com.manage.salary.employee.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,6 @@ public class SalaryServiceImpl implements SalaryService {
     }
 
 
-
     @Override
     @Transactional
     public void save(Salary theSalary) {
@@ -31,4 +31,16 @@ public class SalaryServiceImpl implements SalaryService {
     }
 
 
+    public Salary calculateNet(Salary theSalary, Employee theEmployee) {
+        int tax;
+        theSalary.setEmployee(theEmployee);
+        if (theEmployee.getPosition().toLowerCase().equals("manager")) {
+            tax = 12;
+        } else tax = 10;
+        theSalary.setTax(tax);
+        Double taxedMoney = theSalary.getGrossMonth() / theSalary.getTax();
+        theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
+
+        return theSalary;
+    }
 }

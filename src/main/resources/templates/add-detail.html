@@ -6,7 +6,8 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/detail/saveDetail}" th:object="${employeeDetail}" method="post">
+<form action="#" th:action="@{/detail/saveDetail/{id}(id=${employeeId})}" th:object="${employeeDetail}" method="post">
+
 
 
 
@@ -24,11 +25,6 @@
     </table>
 
     <br><br>
-    Employee: <select name="employeeId">
-    <option th:each="employee : ${employees}"
-            th:text = "${employee.firstName} + ' ' + ${employee.lastName}"
-            th:value = "${employee.id}"></option>
-</select>
 
     <input type="submit">
     <br><br>

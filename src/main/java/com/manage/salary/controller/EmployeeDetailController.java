@@ -39,22 +39,19 @@ public class EmployeeDetailController {
         Employee theEmployee = employeeService.getEmployeeById(employeeId);
         EmployeeDetail employeeDetail = theEmployee.getEmployeeDetail();
         theModel.addAttribute("employeeDetails", employeeDetail);
+        if(employeeDetail != null){
+            return "show-detail";
+        } else {
+            EmployeeDetail theEmployeeDetail = new EmployeeDetail();
 
-        return "employee-detail";
+            theModel.addAttribute(theEmployeeDetail);
+
+            theModel.addAttribute("employees", employeeService.getEmployeeById(employeeId));
+            return "add-detail";
+        }
+
     }
-
-    @GetMapping("/addDetail/{employeeId}")
-    public String addDetail(@PathVariable("employeeId") Long employeeId, Model theModel){
-
-        EmployeeDetail employeeDetail = new EmployeeDetail();
-
-        theModel.addAttribute(employeeDetail);
-
-        theModel.addAttribute("employees", employeeService.getEmployeeById(employeeId));
-
-        return "add-detail";
-    }
-
+    
     @GetMapping("/updateDetail/{employeeDetailId}")
     public String updateEmployeeDetail(@PathVariable("employeeDetailId") Long employeeDetailId, Model theModel){
 

@@ -9,6 +9,7 @@
 <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="post">
     <input type="hidden" th:field="*{id}" />
 
+
     First Name: <input type="text" th:field="*{firstName}" />
         <br><br>
     Last Name: <input type="text" th:field="*{lastName}" />

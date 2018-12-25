@@ -4,6 +4,7 @@ package com.manage.salary.salary;
 import com.manage.salary.employee.Employee;
 import lombok.Data;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 

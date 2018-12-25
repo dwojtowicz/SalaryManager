@@ -6,8 +6,6 @@
 </head>
 <body>
 
-<a th:href="@{/detail/addDetail/{id}(id=${employeeId})}"> <button> Add Detail </button> </a>
-
 <table>
     <tr>
         <th>City</th>
@@ -21,7 +19,7 @@
 
         <td th:text="${employeeDetail.city}"></td>
         <td th:text="${employeeDetail.street}"></td>
-    <td> <a th:href="@{/detail/updateDetail/{id}(id=${employeeDetail.id})}" /> Update </td>
+        <td> <a th:href="@{/detail/updateDetail/{id}(id=${employeeDetail.id})}" /> Update </td>
     </tr>
 
 </table>

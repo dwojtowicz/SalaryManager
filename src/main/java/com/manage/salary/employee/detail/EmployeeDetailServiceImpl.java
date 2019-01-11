@@ -16,14 +16,22 @@ public class EmployeeDetailServiceImpl implements EmployeeDetailService{
 
     @Override
     @Transactional
-    public void save(EmployeeDetail employeeDetail) {
-        employeeDetailRepository.save(employeeDetail);
+    public void saveOrUpdateEmployeeDetail(EmployeeDetail employeeDetail) {
+
+        if (employeeDetail.getId() != null){
+            EmployeeDetail empDtl = employeeDetailRepository.getOne(employeeDetail.getId());
+            empDtl.setCity(employeeDetail.getCity());
+            empDtl.setStreet(employeeDetail.getStreet());
+            employeeDetailRepository.save(empDtl);
+        } else {
+            employeeDetailRepository.save(employeeDetail);
+        }
     }
 
     @Override
     @Transactional
     public EmployeeDetail getEmployeeDetailById(Long employeeDetailId) {
-        return employeeDetailRepository.findById(employeeDetailId).get();
+        return employeeDetailRepository.findById(employeeDetailId).orElse(null);
     }
 
 

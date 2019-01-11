@@ -31,4 +31,5 @@ public class EmployeeDetail {
             CascadeType.PERSIST, CascadeType.REFRESH})
     Employee employee;
 
+
 }

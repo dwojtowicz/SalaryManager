@@ -55,9 +55,21 @@ public class EmployeeDetailController {
     public String updateEmployeeDetail(@PathVariable("employeeDetailId") Long employeeDetailId, Model theModel){
 
         EmployeeDetail employeeDetail = employeeDetailService.getEmployeeDetailById(employeeDetailId);
+
+        employeeDetailService.saveOrUpdateEmployeeDetail(employeeDetail);
+
         theModel.addAttribute("employeeDetail", employeeDetail);
 
-        return "add-detail";
+        return "update-detail";
+    }
+
+
+    @PostMapping("/updateDetail/{employeeDetailId}")
+    public String updateDetail(@ModelAttribute EmployeeDetail employeeDetail, @PathVariable("employeeDetailId") Long employeeDetailId){
+
+        employeeDetailService.saveOrUpdateEmployeeDetail(employeeDetail);
+
+        return "redirect:/employee/";
     }
 
 
@@ -71,7 +83,7 @@ public class EmployeeDetailController {
         }   else {
             Employee employee = employeeService.getEmployeeById(employeeId);
             employee.setEmployeeDetail(employeeDetail);
-            employeeDetailService.save(employeeDetail);
+            employeeDetailService.saveOrUpdateEmployeeDetail(employeeDetail);
 
             return "redirect:/employee/";
         }

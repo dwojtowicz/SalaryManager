@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add detail</title>
+</head>
+<body>
+
+<form action="#" th:action="@{/detail/updateDetail/{id}(id=${employeeDetailId})}" th:object="${employeeDetail}" method="post">
+    <input type="hidden" th:field="*{id}" />
+
+    <table>
+        <tr>
+            <td>City: <input type="text" th:field="*{city}" /></td>
+            <td th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City Required</td>
+        </tr>
+
+        <tr>
+            <td>Street: <input type="text" th:field="*{street}" /></td>
+            <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Street Required</td>
+        </tr>
+    </table>
+
+    <br><br>
+
+    <input type="submit">
+    <br><br>
+    <a href="/employee/">Back to List</a>
+</form>
+
+
+
+</body>
+</html>

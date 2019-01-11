@@ -84,7 +84,6 @@ public class EmployeeController {
 
         employeeService.saveOrUpdateEmployee(employee);
 
-
         theModel.addAttribute("employee", employee);
 
         return "add-employee";

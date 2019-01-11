@@ -40,7 +40,9 @@ public class SalaryServiceImpl implements SalaryService {
         theSalary.setTax(tax);
         Double taxedMoney = theSalary.getGrossMonth() * theSalary.getTax();
         theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
-
+        if (theEmployee.getPosition().toLowerCase().equals("manager")) {
+            theSalary.setTax(12D);
+        } else theSalary.setTax(10D);
 
         return theSalary;
     }

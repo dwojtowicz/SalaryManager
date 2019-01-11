@@ -40,28 +40,27 @@ public class EmployeeDetailController {
         EmployeeDetail employeeDetail = theEmployee.getEmployeeDetail();
         theModel.addAttribute("employeeDetails", employeeDetail);
         if(employeeDetail != null){
-            return "show-detail";
+            return "employee-detail";
         } else {
             EmployeeDetail theEmployeeDetail = new EmployeeDetail();
-
             theModel.addAttribute(theEmployeeDetail);
-
             theModel.addAttribute("employees", employeeService.getEmployeeById(employeeId));
             return "add-detail";
         }
 
     }
-    
+
+
     @GetMapping("/updateDetail/{employeeDetailId}")
     public String updateEmployeeDetail(@PathVariable("employeeDetailId") Long employeeDetailId, Model theModel){
 
         EmployeeDetail employeeDetail = employeeDetailService.getEmployeeDetailById(employeeDetailId);
         theModel.addAttribute("employeeDetail", employeeDetail);
 
-
-
         return "add-detail";
     }
+
+
 
     @PostMapping("/saveDetail/{employeeId}")
     public String saveDetail(@Valid @ModelAttribute EmployeeDetail employeeDetail, BindingResult theBindingResult,

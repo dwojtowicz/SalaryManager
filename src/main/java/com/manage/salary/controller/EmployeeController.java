@@ -6,7 +6,7 @@ import com.manage.salary.employee.EmployeeService;
 
 import com.manage.salary.employee.detail.EmployeeDetail;
 import com.manage.salary.salary.Salary;
-import com.sun.org.apache.xpath.internal.operations.Mod;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +54,7 @@ public class EmployeeController {
     @PostMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee") Employee theEmployee){
 
-        employeeService.saveEmployee(theEmployee);
+        employeeService.saveOrUpdateEmployee(theEmployee);
 
 
         return "redirect:/employee/";
@@ -81,15 +81,11 @@ public class EmployeeController {
     public String updateEmployee(@PathVariable("employeeId") Long employeeId, Model theModel){
 
         Employee employee = employeeService.getEmployeeById(employeeId);
-        List<Salary> salary = employeeService.getEmployeeById(employeeId).getSalary();
-        EmployeeDetail employeeDetail = employeeService.getEmployeeById(employeeId).getEmployeeDetail();
-        employee.setSalary(salary);
-        employee.setEmployeeDetail(employeeDetail);
+
+        employeeService.saveOrUpdateEmployee(employee);
 
 
         theModel.addAttribute("employee", employee);
-
-
 
         return "add-employee";
     }

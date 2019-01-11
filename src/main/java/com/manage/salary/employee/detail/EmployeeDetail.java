@@ -27,7 +27,8 @@ public class EmployeeDetail {
     private String street;
 
     @OneToOne(mappedBy = "employeeDetail",
-    fetch = FetchType.LAZY)
+    fetch = FetchType.LAZY, cascade = {CascadeType.DETACH, CascadeType.MERGE,
+            CascadeType.PERSIST, CascadeType.REFRESH})
     Employee employee;
 
 }

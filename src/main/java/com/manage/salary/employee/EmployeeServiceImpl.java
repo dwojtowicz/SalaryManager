@@ -27,15 +27,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     @Transactional
-    public void saveEmployee(Employee theEmployee) {
-        employeeRepository.save(theEmployee);
+    public void saveOrUpdateEmployee(Employee theEmployee) {
 
+        if (theEmployee.getId() != null){
+            Employee emp = employeeRepository.getOne(theEmployee.getId());
+            emp.setFirstName(theEmployee.getFirstName());
+            emp.setLastName(theEmployee.getLastName());
+            emp.setPosition(theEmployee.getPosition());
+            employeeRepository.save(emp);
+        } else
+        employeeRepository.save(theEmployee);
     }
 
     @Override
     @Transactional
-    public Employee getEmployeeById(Long theId){
-       return employeeRepository.findById(theId).get();
+    public Employee getEmployeeById(Long employeeId){
+       return employeeRepository.findById(employeeId).orElse(null);
     }
 
     @Override
@@ -44,7 +51,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(employeeId);
     }
 
+
     private Sort orderByLastName(){
         return new Sort(Sort.Direction.ASC, "lastName");
     }
+
+
+
+
 }
+

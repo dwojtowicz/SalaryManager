@@ -65,6 +65,14 @@ public class SalaryController {
             return "redirect:/employee/";
         }
 
+    @GetMapping("/deleteSalary/{salaryId}")
+    public String deleteEmployee(@PathVariable("salaryId") Long salaryId){
+
+        salaryService.deleteSalary(salaryId);
+
+        return "redirect:/employee/";
+    }
+
 
     }
 

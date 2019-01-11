@@ -26,7 +26,7 @@ public class Salary {
     private Double netMonth;
 
     @Column(name = "tax", nullable = false)
-    private Integer tax;
+    private Double tax;
 
     @ManyToOne(fetch = FetchType.LAZY,
             cascade = {CascadeType.DETACH, CascadeType.MERGE,

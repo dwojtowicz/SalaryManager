@@ -32,15 +32,24 @@ public class SalaryServiceImpl implements SalaryService {
 
 
     public Salary calculateNet(Salary theSalary, Employee theEmployee) {
-        int tax;
+        Double tax;
         theSalary.setEmployee(theEmployee);
         if (theEmployee.getPosition().toLowerCase().equals("manager")) {
-            tax = 12;
-        } else tax = 10;
+            tax = 0.12;
+        } else tax = 0.10;
         theSalary.setTax(tax);
-        Double taxedMoney = theSalary.getGrossMonth() / theSalary.getTax();
+        Double taxedMoney = theSalary.getGrossMonth() * theSalary.getTax();
         theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
 
+
         return theSalary;
+    }
+
+    @Override
+    @Transactional
+    public void deleteSalary(Long salaryId) {
+
+        salaryRepository.deleteById(salaryId);
+
     }
 }

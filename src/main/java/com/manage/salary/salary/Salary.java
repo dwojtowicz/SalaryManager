@@ -7,6 +7,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "salary")
@@ -18,7 +19,7 @@ public class Salary {
     @Column(name = "id")
     private Long id;
 
-    @NotNull(message = "Salary required")
+
     @Column(name = "gross_month", nullable = false)
     private Double grossMonth;
 
@@ -34,44 +35,5 @@ public class Salary {
     private Employee employee;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Double getGrossMonth() {
-        return grossMonth;
-    }
-
-    public void setGrossMonth(Double grossMonth) {
-        this.grossMonth = grossMonth;
-    }
-
-    public Double getNetMonth() {
-        return netMonth;
-    }
-
-    public void setNetMonth(Double netMonth) {
-        this.netMonth = netMonth;
-    }
-
-    public Double getTax() {
-        return tax;
-    }
-
-    public void setTax(Double tax) {
-        this.tax = tax;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
 }
 

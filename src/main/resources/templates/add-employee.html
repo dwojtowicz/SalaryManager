@@ -9,17 +9,25 @@
 <form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="post">
     <input type="hidden" th:field="*{id}" />
 
+    <table>
+        <tr>
+            <td> First Name: <input type="text" th:field="*{firstName}"/></td>
+            <td th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></td>
+        </tr>
+        <tr>
+            <td> Last Name: <input type="text" th:field="*{lastName}" /></td>
+            <td th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></td>
+        </tr>
+    </table>
 
-    First Name: <input type="text" th:field="*{firstName}" />
-        <br><br>
-    Last Name: <input type="text" th:field="*{lastName}" />
-        <br><br>
+
     Position:    <select th:field="*{position}">
         <option th:value="Junior + ' ' + Developer" th:text="Junior + ' ' + Developer"></option>
         <option th:value="Mid + ' ' + Developer" th:text="Mid + ' ' + Developer"></option>
         <option th:value="Senior + ' ' + Developer" th:text="Senior + ' ' + Developer"></option>
         <option th:value="Engineer" th:text="Engineer"></option>
         <option th:value="Manager" th:text="Manager"></option>
+
 
 
 

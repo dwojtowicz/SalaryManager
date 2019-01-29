@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 
@@ -20,9 +22,13 @@ public class Employee {
     @Column(name = "id")
     private Long id;
 
+    @NotNull
+    @Size(min = 1, message = "is required")
     @Column(name = "first_name")
     private String firstName;
 
+    @NotNull
+    @Size(min = 1, message = "is required")
     @Column(name = "last_name")
     private String lastName;
 

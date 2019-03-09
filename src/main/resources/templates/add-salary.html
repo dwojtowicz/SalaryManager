@@ -10,7 +10,7 @@
     <table>
         <tr>
             <td>   Salary gross month: <input type="number" th:field="*{grossMonth}" /></td>
-            <td th:if="${#fields.hasErrors('grossMonth')}" th:errors="*{grossMonth}">Salary Required</td>
+            <td th:if="${#fields.hasErrors('grossMonth')}" th:errors="*{grossMonth}" ></td>
         </tr>
     </table>
 
@@ -18,7 +18,7 @@
 
     <input type="submit">
     <br><br>
-    <a href="/employee/">Back to List</a>
+    <a href="/employee/"><button>Back to List</button></a>
 </form>
 
 

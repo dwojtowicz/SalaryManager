@@ -19,11 +19,11 @@
 
         <td th:text="${employeeDetail.city}"></td>
         <td th:text="${employeeDetail.street}"></td>
-        <td> <a th:href="@{/detail/updateDetail/{id}(id=${employeeDetail.id})}" /> Update </td>
+    <td> <a th:href="@{/detail/updateDetail/{id}(id=${employeeDetail.id})}" /> <button>Update</button> </td>
     </tr>
 
 </table>
 <br><br>
-<a href="/employee/">Back to List</a>
+<a href="/employee/"><button>Back to List</button></a>
 </body>
 </html>

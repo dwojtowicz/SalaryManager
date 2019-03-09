@@ -20,13 +20,13 @@
         <td th:text="${#numbers.formatDecimal(salary.grossMonth,2,0,'COMMA')}"></td>
         <td th:text="${#numbers.formatDecimal(salary.tax, 2,0,'COMMA')}"></td>
         <td th:text="${#numbers.formatDecimal(salary.netMonth ,2 ,2,'COMMA')}"></td>
-        <td> <a th:href="@{/salary/deleteSalary/{id}(id=${salary.id})}" /> X </td>
+        <td> <a th:href="@{/salary/deleteSalary/{id}(id=${salary.id})}" /> <button> X </button></td>
 
     </tr>
 
 </table>
 <br><br>
-<a href="/employee/">Back to List</a>
+<a href="/employee/"><button>Back to List</button></a>
 
 
 </body>

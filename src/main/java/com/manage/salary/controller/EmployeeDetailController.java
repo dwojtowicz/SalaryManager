@@ -79,7 +79,7 @@ public class EmployeeDetailController {
                                 @PathVariable("employeeId") Long employeeId){
 
         if (theBindingResult.hasErrors()){
-            return "redirect:/detail/addDetail";
+            return "redirect:/detail/{employeeId}";
         }   else {
             Employee employee = employeeService.getEmployeeById(employeeId);
             employee.setEmployeeDetail(employeeDetail);

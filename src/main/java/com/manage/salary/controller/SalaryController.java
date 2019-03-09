@@ -31,7 +31,7 @@ public class SalaryController {
     public SalaryController(SalaryService salaryService, EmployeeService employeeService) {
         this.salaryService = salaryService;
         this.employeeService = employeeService;
-    }
+        }
 
 
     @GetMapping("/employeeId/{employeeId}")
@@ -43,7 +43,7 @@ public class SalaryController {
         theModel.addAttribute("salaries", salaries);
 
         return "salary-list";
-    }
+        }
 
     @GetMapping("/addSalary/{employeeId}")
     public String addSalary(@PathVariable("employeeId") Long employeeId, Model theModel){
@@ -53,16 +53,19 @@ public class SalaryController {
         theModel.addAttribute(new Salary());
         theModel.addAttribute("employees", employeeService.getEmployeeById(employeeId));
         return "add-salary";
-    }
+        }
 
     @PostMapping("/saveSalary/{employeeId}")
-    public String saveSalary(@ModelAttribute Salary salary, @PathVariable("employeeId") Long employeeId){
+    public String saveSalary(@Valid @ModelAttribute("salary") Salary salary, BindingResult bindingResult, @PathVariable("employeeId") Long employeeId){
 
-
-        Employee employee = employeeService.getEmployeeById(employeeId);
+        if (bindingResult.hasErrors()){
+            return "add-salary";
+        } else {
+            Employee employee = employeeService.getEmployeeById(employeeId);
             salaryService.calculateNet(salary, employee);
-                salaryService.save(salary);
-            return "redirect:/employee/";
+            salaryService.save(salary);
+            return "redirect:/salary/employeeId/{employeeId}";
+        }
         }
 
     @GetMapping("/deleteSalary/{salaryId}")
@@ -70,10 +73,8 @@ public class SalaryController {
 
         salaryService.deleteSalary(salaryId);
 
-
         return "redirect:/employee/";
-    }
-
+        }
 
     }
 

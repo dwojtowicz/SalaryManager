@@ -6,6 +6,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "employee_detail")
@@ -19,10 +20,12 @@ public class EmployeeDetail {
     private Long id;
 
     @NotNull
+    @Size(min = 1, message = "is required")
     @Column(name = "city")
     private String city;
 
-    @NotNull
+    @NotNull(message = "is required")
+    @Size(min = 1, message = "is required")
     @Column(name = "street")
     private String street;
 

@@ -6,6 +6,7 @@ import lombok.Data;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -19,7 +20,8 @@ public class Salary {
     @Column(name = "id")
     private Long id;
 
-
+    @NotNull
+    @Min(value = 500, message = "must be greater or equal 500")
     @Column(name = "gross_month", nullable = false)
     private Double grossMonth;
 

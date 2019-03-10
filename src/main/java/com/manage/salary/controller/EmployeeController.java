@@ -91,5 +91,9 @@ public class EmployeeController {
         return "add-employee";
     }
 
+    @GetMapping("/user")
+    public String user(){
+        return "user";
+    }
 
 }

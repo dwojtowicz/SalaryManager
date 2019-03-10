@@ -73,6 +73,8 @@ public class SalaryController {
 
         salaryService.deleteSalary(salaryId);
 
+
+
         return "redirect:/employee/";
         }
 

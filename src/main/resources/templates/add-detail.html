@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Add detail</title>
@@ -15,12 +15,12 @@
     <table>
         <tr>
             <td>City: <input type="text" th:field="*{city}" /></td>
-            <td th:if="${#fields.hasErrors('city')}" th:errors="*{city}">City Required</td>
+            <td th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></td>
         </tr>
 
         <tr>
             <td>Street: <input type="text" th:field="*{street}" /></td>
-            <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}">Street Required</td>
+            <td th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></td>
         </tr>
     </table>
 
@@ -28,9 +28,9 @@
 
     <input type="submit">
     <br><br>
-    <a href="/employee/"><button>Back to List</button></a>
-</form>
 
+</form>
+<a href="/employee/"><button>Back to List</button></a>
 
 
 </body>

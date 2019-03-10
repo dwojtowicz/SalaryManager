@@ -24,7 +24,7 @@ public class EmployeeDetail {
     @Column(name = "city")
     private String city;
 
-    @NotNull(message = "is required")
+    @NotNull
     @Size(min = 1, message = "is required")
     @Column(name = "street")
     private String street;

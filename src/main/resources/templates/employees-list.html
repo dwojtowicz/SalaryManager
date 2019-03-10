@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>Employees</title>
 </head>
 <body>
 
+<table>
 
+    <td>
+        <td <div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/employee/addEmployee}"> <button>Add Employee</button> </a></div> </td>
 
-<a th:href="@{/employee/addEmployee}"> <button>Add Employee</button> </a>
+        <td <div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/employee/deleteEmployeeForm}"> <button>Delete Employee</button> </a> </div> </td>
 
-<a th:href="@{/employee/deleteEmployeeForm}"> <button>Delete Employee</button> </a>
+    </tr>
+
+</table>
 
 <table>
     <tr>
@@ -30,9 +35,7 @@
         <td th:text="${employee.position}"></td>
         <td> <a th:href="@{/detail/{id}(id=${employee.id})}" /> <button>Detail</button> </td>
         <td> <a th:href="@{/salary/employeeId/{id}(id=${employee.id})}" /> <button>Salary</button> </td>
-        <td> <a th:href="@{/employee/updateEmployee/{id}(id=${employee.id})}" /> <button>Update</button></td>
-
-
+        <div sec:authorize="hasRole('ADMIN')"> <td> <a th:href="@{/employee/updateEmployee/{id}(id=${employee.id})}" /> <button>Update</button></td> </div>
 
 </tr>
 
@@ -41,6 +44,8 @@
 <form th:action="@{/logout}" method="post">
     <input type="submit" value="Logout">
 </form>
+
+<a href="@{/employee/user}"><button>User</button></a>
 
 </body>
 </html>

@@ -65,8 +65,11 @@ public class EmployeeDetailController {
 
 
     @PostMapping("/updateDetail/{employeeDetailId}")
-    public String updateDetail(@ModelAttribute EmployeeDetail employeeDetail, @PathVariable("employeeDetailId") Long employeeDetailId){
+    public String updateDetail(@Valid @ModelAttribute EmployeeDetail employeeDetail, BindingResult theBindingResult){
 
+        if (theBindingResult.hasErrors()){
+            return "redirect:/detail/updateDetail/{employeeDetailId}";
+        } else
         employeeDetailService.saveOrUpdateEmployeeDetail(employeeDetail);
 
         return "redirect:/employee/";

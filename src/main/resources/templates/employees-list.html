@@ -34,7 +34,7 @@
         <td th:text="${employee.lastName}"></td>
         <td th:text="${employee.position}"></td>
         <td> <a th:href="@{/detail/{id}(id=${employee.id})}" /> <button>Detail</button> </td>
-        <td> <a th:href="@{/salary/employeeId/{id}(id=${employee.id})}" /> <button>Salary</button> </td>
+        <td> <a th:href="@{/salary/{id}(id=${employee.id})}" /> <button>Salary</button> </td>
         <div sec:authorize="hasRole('ADMIN')"> <td> <a th:href="@{/employee/updateEmployee/{id}(id=${employee.id})}" /> <button>Update</button></td> </div>
 
 </tr>
@@ -45,7 +45,6 @@
     <input type="submit" value="Logout">
 </form>
 
-<a href="@{/employee/user}"><button>User</button></a>
 
 </body>
 </html>

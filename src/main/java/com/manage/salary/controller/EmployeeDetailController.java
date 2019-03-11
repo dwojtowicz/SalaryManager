@@ -37,17 +37,22 @@ public class EmployeeDetailController {
     public String employeeDetail(@PathVariable("employeeId")Long employeeId, Model theModel){
 
         Employee theEmployee = employeeService.getEmployeeById(employeeId);
-        EmployeeDetail employeeDetail = theEmployee.getEmployeeDetail();
-        theModel.addAttribute("employeeDetails", employeeDetail);
-        if(employeeDetail != null){
+
+        theModel.addAttribute("employeeDetails", theEmployee.getEmployeeDetail());
+        if(theEmployee.getEmployeeDetail() != null){
             return "employee-detail";
         } else {
-            EmployeeDetail theEmployeeDetail = new EmployeeDetail();
-            theModel.addAttribute(theEmployeeDetail);
-            theModel.addAttribute("employees", employeeService.getEmployeeById(employeeId));
-            return "add-detail";
+            return "redirect:/detail/addDetail/{employeeId}";
         }
 
+    }
+
+    @GetMapping("/addDetail/{employeeId}")
+    public String addDetail(@PathVariable("employeeId") Long employeeId, Model theModel){
+        EmployeeDetail theEmployeeDetail = new EmployeeDetail();
+        theModel.addAttribute(theEmployeeDetail);
+        theModel.addAttribute("employees", employeeService.getEmployeeById(employeeId));
+        return "add-detail";
     }
 
 
@@ -64,25 +69,27 @@ public class EmployeeDetailController {
     }
 
 
-    @PostMapping("/updateDetail/{employeeDetailId}")
-    public String updateDetail(@Valid @ModelAttribute EmployeeDetail employeeDetail, BindingResult theBindingResult){
+    @PostMapping("/updateDetail/{employeeId}")
+    public String updateDetail(@Valid @ModelAttribute EmployeeDetail employeeDetail, BindingResult theBindingResult,
+                               @PathVariable("employeeId") Long employeeId){
 
         if (theBindingResult.hasErrors()){
             return "redirect:/detail/updateDetail/{employeeDetailId}";
-        } else
-        employeeDetailService.saveOrUpdateEmployeeDetail(employeeDetail);
+        } else {
+
+            employeeDetailService.saveOrUpdateEmployeeDetail(employeeDetail);
+        }
+
 
         return "redirect:/employee/";
     }
-
-
 
     @PostMapping("/saveDetail/{employeeId}")
     public String saveDetail(@Valid @ModelAttribute EmployeeDetail employeeDetail, BindingResult theBindingResult,
                                 @PathVariable("employeeId") Long employeeId){
 
         if (theBindingResult.hasErrors()){
-            return "redirect:/detail/{employeeId}";
+            return "add-detail";
         }   else {
             Employee employee = employeeService.getEmployeeById(employeeId);
             employee.setEmployeeDetail(employeeDetail);

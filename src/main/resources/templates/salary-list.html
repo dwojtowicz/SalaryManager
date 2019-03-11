@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<div sec:authorize="hasRole('Admin')"><a th:href="@{/salary/addSalary/{id}(id=${employeeId})}"> <button>Add Salary</button> </a> </div>
+<div sec:authorize="hasRole('ADMIN')"><a th:href="@{/salary/addSalary/{id}(id=${employeeId})}"> <button>Add Salary</button> </a> </div>
 
 
 <table>
@@ -20,8 +20,7 @@
         <td th:text="${#numbers.formatDecimal(salary.grossMonth,2,0,'COMMA')}"></td>
         <td th:text="${#numbers.formatDecimal(salary.tax, 2,0,'COMMA')}"></td>
         <td th:text="${#numbers.formatDecimal(salary.netMonth ,2 ,2,'COMMA')}"></td>
-        <td> <a th:href="@{/salary/deleteSalary/{id}(id=${salary.id})}" /> <button> X </button></td>
-
+        <td><div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/salary/deleteSalary/{id}(id=${salary.id})}" /> <button> X </button></div></td>
     </tr>
 
 </table>

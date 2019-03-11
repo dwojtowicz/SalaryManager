@@ -34,7 +34,7 @@ public class SalaryController {
         }
 
 
-    @GetMapping("/employeeId/{employeeId}")
+    @GetMapping("/{employeeId}")
     public String employeeIdSalary(@PathVariable("employeeId") Long employeeId, Model theModel){
 
 

@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form action="#" th:action="@{/employee/saveEmployee}" th:object="${employee}" method="post">
+<form th:action="@{/employee/saveEmployee}" th:object="${employee}" method="post">
     <input type="hidden" th:field="*{id}" />
 
     <table>

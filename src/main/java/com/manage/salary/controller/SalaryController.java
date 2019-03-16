@@ -64,18 +64,15 @@ public class SalaryController {
             Employee employee = employeeService.getEmployeeById(employeeId);
             salaryService.calculateNet(salary, employee);
             salaryService.save(salary);
-            return "redirect:/salary/employeeId/{employeeId}";
+            return "redirect:/salary/{employeeId}";
         }
         }
 
-    @GetMapping("/deleteSalary/{salaryId}")
-    public String deleteEmployee(@PathVariable("salaryId") Long salaryId){
-
+    @GetMapping("/{employeeId}/deleteSalary/{salaryId}")
+    public String deleteEmployee(@PathVariable("salaryId") Long salaryId, @PathVariable("employeeId") Long employeeId){
         salaryService.deleteSalary(salaryId);
 
-
-
-        return "redirect:/employee/";
+        return "redirect:/salary/{employeeId}";
         }
 
     }

@@ -2,38 +2,48 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Salary List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {background-color: #f2f2f2;}
+    </style>
 </head>
 <body>
 
 <div sec:authorize="hasRole('ADMIN')"><a th:href="@{/salary/addSalary/{id}(id=${employeeId})}"> <button>Add Salary</button> </a> </div>
 
 
+<div style="height:200px;width:fit-content;overflow:auto;">
 <table>
     <tr>
+        <th>Date</th>
         <th>Gross</th>
         <th>Tax</th>
         <th>Net</th>
-
     </tr>
 
     <tr th:each="salary : ${salaries}">
+        <td th:text="${#temporals.format(salary.paymentDate, 'dd-MM-yyyy')}"></td>
         <td th:text="${#numbers.formatDecimal(salary.grossMonth,2,0,'COMMA')}"></td>
         <td th:text="${#numbers.formatDecimal(salary.tax, 2,0,'COMMA')}"></td>
         <td th:text="${#numbers.formatDecimal(salary.netMonth ,2 ,2,'COMMA')}"></td>
         <td><div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/salary/{empId}/deleteSalary/{id}((empId=${salary.employee.id}),id=${salary.id})}" /> <button> X </button></div></td>
-
-    <tr>
-        <td>Total net:</td>
-        <td>     </td>
-        <td th:text="${#numbers.formatDecimal(employee.totalNet, 2, 2, 'COMMA')}"></td>
     </tr>
-
-
 </table>
+</div>
 
-<br><br>
 
+Total net:  <a th:text="${#numbers.formatDecimal(employee.totalNet, 2, 2, 'COMMA')}"></a>
+
+<br>
 
 
 <a href="/employee/"><button>Back to List</button></a>

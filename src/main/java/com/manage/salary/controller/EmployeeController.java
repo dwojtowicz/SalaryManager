@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -35,6 +36,7 @@ public class EmployeeController {
         List<Employee> employees = employeeService.getEmployees();
 
         theModel.addAttribute("employees", employees);
+        theModel.addAttribute("localDateTime", LocalDateTime.now());
         return "employees-list";
     }
 

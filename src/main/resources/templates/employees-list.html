@@ -2,19 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
-    <title>Employees</title>
+    <title>Employee List</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 500px;
+        }
+        th, td {
+            text-align: center;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {background-color: #f2f2f2;}
+
+
+    </style>
+
 </head>
-<body>
 
 <table>
+   <td> <div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/employee/addEmployee}"> <button>Add Employee</button> </a></div></td>
 
-    <td>
-        <td <div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/employee/addEmployee}"> <button>Add Employee</button> </a></div> </td>
-
-        <td <div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/employee/deleteEmployeeForm}"> <button>Delete Employee</button> </a> </div> </td>
-
-    </tr>
-
+   <td> <div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/employee/deleteEmployeeForm}"> <button>Delete Employee</button> </a> </div></td>
 </table>
 
 <table>
@@ -45,6 +55,10 @@
     <input type="submit" value="Logout">
 </form>
 
+
+<div style="position: absolute; bottom: 5px; margin-left: 5px">
+    <p th:text="${#temporals.format(localDateTime, 'dd-MM-yyyy HH:mm:ss')}"></p>
+</div>
 
 </body>
 </html>

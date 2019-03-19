@@ -12,6 +12,8 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "salary")
@@ -40,6 +42,8 @@ public class Salary {
                     CascadeType.PERSIST, CascadeType.REFRESH})
     private Employee employee;
 
+    @Column(name = "payment_date")
+    private LocalDateTime paymentDate;
 
 
 }

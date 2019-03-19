@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,8 +46,12 @@ public class SalaryServiceImpl implements SalaryService {
             salary.setTax(12D);
         } else salary.setTax(10D);
 
+        salary.setPaymentDate(LocalDateTime.now());
+
         return salary;
     }
+
+
 
 
     public Double netTotal(Employee employee){

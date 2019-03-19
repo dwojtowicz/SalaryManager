@@ -3,8 +3,7 @@ package com.manage.salary.employee;
 
 import com.manage.salary.employee.detail.EmployeeDetail;
 import com.manage.salary.salary.Salary;
-import lombok.Data;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -34,7 +33,6 @@ public class Employee {
     @Column(name = "position")
     private String position;
 
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_detail_id")
     private EmployeeDetail employeeDetail;
@@ -43,5 +41,5 @@ public class Employee {
     @JoinColumn(name = "employee_id")
     private List<Salary> salary;
 
-
+    private Double totalNet;
 }

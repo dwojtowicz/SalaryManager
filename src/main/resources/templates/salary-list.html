@@ -14,6 +14,7 @@
         <th>Gross</th>
         <th>Tax</th>
         <th>Net</th>
+
     </tr>
 
     <tr th:each="salary : ${salaries}">
@@ -21,10 +22,20 @@
         <td th:text="${#numbers.formatDecimal(salary.tax, 2,0,'COMMA')}"></td>
         <td th:text="${#numbers.formatDecimal(salary.netMonth ,2 ,2,'COMMA')}"></td>
         <td><div sec:authorize="hasRole('ADMIN')"> <a th:href="@{/salary/{empId}/deleteSalary/{id}((empId=${salary.employee.id}),id=${salary.id})}" /> <button> X </button></div></td>
+
+    <tr>
+        <td>Total net:</td>
+        <td>     </td>
+        <td th:text="${#numbers.formatDecimal(employee.totalNet, 2, 2, 'COMMA')}"></td>
     </tr>
 
+
 </table>
+
 <br><br>
+
+
+
 <a href="/employee/"><button>Back to List</button></a>
 
 

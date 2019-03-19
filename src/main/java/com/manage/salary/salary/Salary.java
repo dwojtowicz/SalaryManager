@@ -2,7 +2,10 @@ package com.manage.salary.salary;
 
 
 import com.manage.salary.employee.Employee;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 
 import javax.persistence.*;
@@ -13,6 +16,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "salary")
 @Data
+@NoArgsConstructor
 public class Salary {
 
     @Id
@@ -35,6 +39,7 @@ public class Salary {
             cascade = {CascadeType.DETACH, CascadeType.MERGE,
                     CascadeType.PERSIST, CascadeType.REFRESH})
     private Employee employee;
+
 
 
 }

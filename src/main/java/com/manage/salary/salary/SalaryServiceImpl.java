@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -31,20 +32,30 @@ public class SalaryServiceImpl implements SalaryService {
     }
 
 
-    public Salary calculateNet(Salary theSalary, Employee theEmployee) {
+    public Salary calculateNet(Salary salary, Employee employee) {
         Double tax;
-        theSalary.setEmployee(theEmployee);
-        if (theEmployee.getPosition().toLowerCase().equals("manager")) {
+        salary.setEmployee(employee);
+        if (employee.getPosition().toLowerCase().equals("manager")) {
             tax = 0.12;
         } else tax = 0.10;
-        theSalary.setTax(tax);
-        Double taxedMoney = theSalary.getGrossMonth() * theSalary.getTax();
-        theSalary.setNetMonth(theSalary.getGrossMonth() - taxedMoney);
-        if (theEmployee.getPosition().toLowerCase().equals("manager")) {
-            theSalary.setTax(12D);
-        } else theSalary.setTax(10D);
+        salary.setTax(tax);
+        Double taxedMoney = salary.getGrossMonth() * salary.getTax();
+        salary.setNetMonth(salary.getGrossMonth() - taxedMoney);
+        if (employee.getPosition().toLowerCase().equals("manager")) {
+            salary.setTax(12D);
+        } else salary.setTax(10D);
 
-        return theSalary;
+        return salary;
+    }
+
+
+    public Double netTotal(Employee employee){
+
+
+        List<Salary> salaries = employee.getSalary();
+        double sum = salaries.stream().mapToDouble(Salary::getNetMonth).sum();
+
+        return sum;
     }
 
     @Override
@@ -52,6 +63,6 @@ public class SalaryServiceImpl implements SalaryService {
     public void deleteSalary(Long salaryId) {
 
         salaryRepository.deleteById(salaryId);
-
     }
+
 }

@@ -11,7 +11,9 @@ public interface SalaryService {
 
     List<Salary> getSalaries();
 
-    Salary calculateNet(Salary theSalary, Employee theEmployee);
+    Salary calculateNet(Salary salary, Employee employee);
+
+    Double netTotal(Employee employee);
 
     void deleteSalary(Long salaryId);
 }

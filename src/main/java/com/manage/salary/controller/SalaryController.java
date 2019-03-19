@@ -37,10 +37,12 @@ public class SalaryController {
     @GetMapping("/{employeeId}")
     public String employeeIdSalary(@PathVariable("employeeId") Long employeeId, Model theModel){
 
-
         Employee employee = employeeService.getEmployeeById(employeeId);
         List<Salary> salaries = employee.getSalary();
+        employee.setTotalNet(salaryService.netTotal(employee));
+
         theModel.addAttribute("salaries", salaries);
+        theModel.addAttribute("employee", employee);
 
         return "salary-list";
         }
